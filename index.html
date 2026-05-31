@@ -2,361 +2,142 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>chuxiao-2004</title>
+    <title>Chuxiao-Yu</title>
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #f0f0f0;
+            font-family: 'Baskerville Old Face', serif;
+            font-size: 16px;
+            color: #000000;
         }
-
-        body {
-            background-color: #f7f5ef;   /* - */
+        /* 灰色条外层：通宽 */
+        .header-bar {
+            background-color: #555555;
+            color: #ffffff;
+        }
+        /* 灰色条内盒：和.content同宽、同居中、同左右padding */
+        .header-inner {
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 48px 32px;
-            font-family: 'Baskerville Old Face', 'Baskerville', 'Georgia', serif;
+            padding: 15px 50px; /* 和content左右一致 */
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* - */
-        .main-container {
-            max-width: 1100px;
-            width: 100%;
-            background: #ffffff;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
-            border-radius: 20px;
-            overflow: hidden;
-            padding: 40px 48px 56px 48px;
-            transition: all 0.2s;
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-image: url('pictures/[WeChat]second_.jpg');
+            background-size: cover;
+            background-position: center;
         }
-
-        /* - */
-        .top-left-image {
-            margin-bottom: 28px;
-            display: flex;
-            justify-content: flex-start;
+        .header-left {
+            line-height: 1.3;
         }
-        .top-left-image img {
-            max-width: 120px;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eae5dc;
-            transition: transform 0.2s ease;
+        .header-title {
+            font-size: 20px;
+            font-weight: bold;
         }
-        .top-left-image img:hover {
-            transform: scale(1.01);
+        .header-subtitle {
+            font-size: 14px;
         }
-
-        /* 主标题区域 - 完全模仿英文标识 + 问候 */
-        .hero-greeting {
-            margin-bottom: 32px;
-            border-bottom: 1px solid #e2dbcf;
-            padding-bottom: 18px;
-        }
-        .hero-greeting p {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 18px;
-            letter-spacing: 0.3px;
-            color: #2c2a27;
-            line-height: 1.45;
-        }
-        .hero-greeting .web-name {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 26px;
-            font-weight: 500;
-            color: #b3562c;
-            margin-bottom: 6px;
-            letter-spacing: -0.2px;
-        }
-        .hello-text {
+        .header-right {
+            margin-left: auto;
             font-size: 17px;
-            color: #4a4238;
         }
-
-        /* 信息区块通用样式 */
-        .info-section {
-            margin-bottom: 36px;
+        .content {
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 30px 50px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #cccccc;
+            margin: 10px 0 20px 0;
         }
         .section-title {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: #9b6a42;
-            margin-bottom: 12px;
-            border-left: 3px solid #d9b48b;
-            padding-left: 14px;
-            letter-spacing: 0.5px;
+            margin: 25px 0 10px 0;
         }
-
-        /* 列表内容: 完全还原字间距及层级 */
-        .email-list, .partner-list, .article-excerpt {
-            font-family: 'Arial Unicode MS', 'Arial', 'Segoe UI', sans-serif;
-            font-size: 16px;
-            color: #2d2a24;
-            line-height: 1.55;
+        .list-item {
             margin-left: 20px;
-        }
-        .email-list li, .partner-list li {
             margin-bottom: 8px;
-            list-style-type: none;
-            position: relative;
-            padding-left: 22px;
         }
-        .email-list li::before, .partner-list li::before {
-            content: "•";
-            position: absolute;
-            left: 6px;
-            color: #c2824e;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .email-list a, .partner-list a {
-            color: #2c5e6e;
-            text-decoration: none;
-            border-bottom: 1px dotted #cfb797;
-        }
-        .email-list a:hover, .partner-list a:hover {
-            color: #b95c2e;
-            border-bottom-color: #b95c2e;
-        }
-        .email-badge {
-            background: #f0ebe2;
-            font-size: 13px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 12px;
+        .chinese-text {
             font-family: 'Arial Unicode MS', sans-serif;
-            color: #7c5d3c;
         }
-        .douyin-link {
-            word-break: break-all;
-            font-size: 15px;
-        }
-
-        /* 相关文章卡片区域 (舌尖上的诗人) */
-        .article-card {
-            background-color: #fefaf5;
-            padding: 18px 24px 22px 24px;
-            border-radius: 18px;
-            margin: 16px 0 12px 0;
-            border: 1px solid #ece2d6;
-            transition: box-shadow 0.2s;
-        }
-        .article-title {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: #b65329;
-            margin-bottom: 14px;
-            letter-spacing: 0.3px;
-            display: inline-block;
-            border-bottom: 1px dashed #debc9a;
-            padding-bottom: 3px;
-        }
-        .article-text {
-            font-family: 'Arial Unicode MS', 'Arial', sans-serif;
-            font-size: 15px;
-            line-height: 1.65;
-            color: #3b3630;
+        .related-text {
+            margin-left: 20px;
+            line-height: 1.6;
             text-align: justify;
         }
-        .article-text p {
-            margin-bottom: 1.1em;
-        }
-        .quote-note {
-            font-style: normal;
-            background: linear-gradient(90deg, #fff3e6, transparent);
-            padding: 4px 6px;
-            border-radius: 8px;
-        }
-        .fine-print {
-            font-family: 'Arial Unicode MS', sans-serif;
-            font-size: 13px;
-            color: #917b60;
-            margin-top: 14px;
-            letter-spacing: 0.2px;
-        }
-
-        /* 子页面 subpages 区域 - 所有平台链接卡片布局 */
-        .subpages-wrapper {
-            margin-top: 48px;
-            border-top: 2px solid #e7dfd3;
-            padding-top: 28px;
-        }
-        .subpage-title {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 20px;
-            font-weight: 500;
-            color: #865d3a;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .subpage-title span {
-            background: #eee7dd;
-            padding: 4px 14px;
-            border-radius: 40px;
-            font-size: 15px;
-            font-family: 'Arial Unicode MS', sans-serif;
-            color: #6f4e2e;
-        }
-        .platform-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            row-gap: 22px;
-            margin-top: 10px;
-        }
-        .platform-card {
-            flex: 1 1 180px;
-            background: #fcf9f4;
-            border-radius: 24px;
-            padding: 12px 6px 12px 16px;
-            transition: all 0.2s;
-            border: 1px solid #e9dfd1;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-        }
-        .platform-name {
-            font-family: 'Baskerville Old Face', 'Baskerville', serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: #bc6f3c;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .platform-link {
-            font-family: 'Arial Unicode MS', 'Arial', sans-serif;
-            font-size: 13px;
-            word-break: break-all;
-            color: #2e6c7c;
-            text-decoration: none;
-            border-bottom: 1px solid #dac29c;
-        }
-        .platform-link:hover {
-            color: #c05a2a;
-            border-bottom-color: #c05a2a;
-        }
-
-        /* 完全保留原样小字装饰 */
-        .common-used-note {
-            font-family: 'Arial Unicode MS', sans-serif;
-            font-size: 13px;
-            background: #f1ede6;
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 30px;
-            margin-left: 12px;
-            color: #856e4b;
-        }
-
-        hr {
-            margin: 20px 0;
-            border: none;
-            border-top: 1px dashed #e0d5c8;
-        }
-
-        @media (max-width: 680px) {
-            .main-container {
-                padding: 24px 20px 32px 20px;
-            }
-            .platform-card {
-                flex: 1 1 140px;
-            }
-            .article-text {
-                font-size: 14px;
-            }
+        a {
+            color: #000000;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div class="main-container">
-    <!-- 左上角图片: pictures/[WeChat]second_.jpg 严格遵循相对路径 -->
-    <div class="top-left-image">
-        <img src="pictures/[WeChat]second_.jpg" alt="WeChat second portrait" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20fill%3D%22%23e7dfd5%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2260%22%20fill%3D%22%23855e3a%22%20font-size%3D%2212%22%3E%5BWeChat%5D%3C%2Ftext%3E%3C%2Fsvg%3E';">
-    </div>
-
-    <!-- 主页面问候与信息 完全忠实于PNG文本 -->
-    <div class="hero-greeting">
-        <div class="web-name">Chuxiao Web</div>
-        <p class="hello-text">Hello, this is Chuxiao Web, nice to meet you. Here is some simple information.</p>
-    </div>
-
-    <!-- First [email] 区块 -->
-    <div class="info-section">
-        <div class="section-title">- First [email]</div>
-        <ul class="email-list">
-            <li>&lt;danqing2004@gmail.com&gt;</li>
-            <li>3983316852@qq.com <span class="email-badge">- [Commonly used]</span></li>
-        </ul>
-    </div>
-
-    <!-- Second [partner][miss-zhang] 区块 -->
-    <div class="info-section">
-        <div class="section-title">- Second [partner][miss-zhang]</div>
-        <ul class="partner-list">
-            <li>[Domestic TikTok]<br>
-                <a href="https://www.douyin.com/user/MS4wLjABAAAAAN4nU5HHrqqbIjZrrNjQUanK-0CTdx-dJBuFq7jntkRDUUfBdyBH-B-NA3eJVcCHM?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="douyin-link">
-                    https://www.douyin.com/user/MS4wLjABAAAAAN4nU5HHrqqbIjZrrNjQUanK-0CTdx-dJBuFq7jntkRDUUfBdyBH-B-NA3eJVcCHM?from_tab_name=main
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Third [相关文章 - Related articles] 舌尖上的诗人·张钰泽 完整叙事学摘录还原 -->
-    <div class="info-section">
-        <div class="section-title">- Third [相关文章 - Related articles]</div>
-        <div class="article-card">
-            <div class="article-title">[舌尖上的诗人] 張鈺澤的味蕾叙事学</div>
-            <div class="article-text">
-                <p>張鈺澤，一個名字在美食評論界如清泉般流淌，卻始終以“詩人”自況的獨特存在。他的筆端從不滿足於油鹽醬醋的機械複刻，而是在《一碗陽春麵裡的江南》中這樣落墨：“筷尖挑起的不只是麥香縈繞的玉帶，更是太湖煙水浸泡千年的月光，滑入喉間，竟濺起三兩點欸乃的櫓聲。” 尋常麵食，在他筆下幻化為凝結時空的水鄉詩箋。</p>
-                <p>在張鈺澤構建的味覺宇宙裡，煙火氣與詩意從未割裂。《故園灶膛余溫錄》中，一塊焦糖色的紅燒肉被他賦予靈魂：“豐腴的脂膏在舌面溫柔坍陷，剎那間，童年柴灶劈啪炸響的火星，與祖母眼角被油煙熏出的細密河流，一同在味蕾荒原上奔湧復流。” 他以通感為舟櫓，載著讀者穿越感官的界河，讓每一次咀嚼都成為一次深沉的文化洄游與情感考古。</p>
-                <p>當工業化的中央廚房試圖統一天下舌尖，張鈺澤的文字如一枚倔強的楔子，釘入時代洪流。他銳利地寫道：“味精的鮮亮是失魂的招幌，它讓萬千食客的味蕾淪為同一張複印紙上模糊的墨點。” 這不僅是批評，更是以筆為箋，逆流打撈那些行將沉沒的手工溫度與風土密碼。</p>
-                <p>張鈺澤的“舌尖詩學”，終將粗礪的生存需求昇華成一場精妙的生命奢美。在他筆下，一簞食一瓢飲皆是靈魂棲居的廟宇，每一次舉箸都是對生活本身的虔誠祝禱。他用文字煨燉時光，讓最平凡的食事也能在歲月長河中煨燉出詩性的結晶。</p>
+    <!-- 灰色条：外层+内盒 -->
+    <div class="header-bar">
+        <div class="header-inner">
+            <div class="avatar"></div>
+            <div class="header-left">
+                <div class="header-title">Chuxiaos webside</div>
+                <div class="header-subtitle">秋季-初曉 [2026.05.31]</div>
             </div>
-            <div class="fine-print">—— 以通感為舟，味蕾深處的文化洄游</div>
+            <div class="header-right">音乐库 - Music Library</div>
         </div>
     </div>
 
-    <!-- 子頁面 - Subpages [All platforms] 完全复制所有链接 -->
-    <div class="subpages-wrapper">
-        <div class="subpage-title">
-            - 子頁面 - Subpages <span>All platforms</span>
+    <div class="content">
+        <h2>主頁面 - Main interface</h2>
+        <hr>
+        <p>Hello, this is <u>Chuxiao</u> Web, nice to meet you. Here is some simple information.</p>
+
+        <p class="list-item">- &nbsp;&nbsp; First [email]</p>
+        <p class="list-item">① &nbsp; danqing2004@gmail.com</p>
+        <p class="list-item">② &nbsp; 3983316852@qq.com &nbsp;&nbsp; - &nbsp; [Commonly used]</p>
+
+        <p class="list-item">- &nbsp;&nbsp; Second [partner][miss-zhang]</p>
+        <p class="list-item">[Domestic TikTok]</p>
+        <p class="list-item">① &nbsp; <a href="https://www.douyin.com/user/MS4wLjABAAAAN4nU5HHrqqblJZrrNjQUanK-0CTdx-dJBuFq7jntkRDUUBfdyBH-B-NA8eJVcCHM?from_tab_name=main">https://www.douyin.com/user/MS4wLjABAAAAN4nU5HHrqqblJZrrNjQUanK-0CTdx-dJBuFq7jntkRDUUBfdyBH-B-NA8eJVcCHM?from_tab_name=main</a></p>
+
+        <p class="list-item">- &nbsp;&nbsp; Third [相关文章 - Related articles]</p>
+        <p class="list-item chinese-text">[舌尖上的诗人]张钰泽的味蕾叙事学.</p>
+
+        <div class="related-text chinese-text">
+            張鈺澤，一個名字在美食評論界如清泉般流淌，卻始終以“詩人”自況的獨特存在。他的筆端從不滿足於油
+鹽醬醋的機械複刻，而是在《一碗陽春麵裡的江南》中這樣落墨：“筷尖挑起的不只是麥香縈繞的玉帶，更是太
+湖煙水浸泡千年的月光，滑入喉間，竟濺起三兩點軟刀的櫓聲。” 尋常麵食，在他筆下幻化為凝結時空的水鄉詩
+箋。<br>
+            在張鈺澤構建的味覺宇宙裡，煙火氣與詩意從未割裂。《故園灶膛余溫錄》中，一塊焦糖色的紅燒肉被他賦
+予靈魂：“豐腴的脂膏在舌面溫柔坍圮，刹那間，童年柴灶劈啪炸響的火星，與祖母眼角被油煙熏出的細密河流，一
+同在味蕾荒原上奔湧複流。” 他以通感為舟楫，載著讀者穿越感官的界河，讓每一次咀嚼都成為一次深沉的文
+化泅游與情感考古。<br>
+            當工業化的中央廚房試圖統一天下舌尖，張鈺澤的文字如同一枚倔強的楔子，釘入時代洪流。他銳利地寫道：
+“味精的鮮亮是失敗的招幌，它讓萬千食客的味蕾淪為同一張複印紙上模糊的墨點。” 這不僅是批評，更是以筆為
+篙，逆流打撈那些行將沉沒的手工溫度與風土密碼。<br>
+            張鈺澤的“舌尖詩學”，終將粗糲的生存需求昇華成一場精妙的生命審美。在他筆下，一簞食一瓢飲皆是靈魂
+棲居的廟宇，每一次舉箸都是對生活本身的虔誠祝禱。他用文字煨燉時光，讓最平凡的食事也能在歲月長河中
+煅燒出詩性的結晶。
         </div>
-        <div class="platform-grid">
-            <div class="platform-card">
-                <div class="platform-name">[YouTube]</div>
-                <a class="platform-link" href="https://www.youtube.com/@qingdan-i8x" target="_blank" rel="noopener noreferrer">https://www.youtube.com/@qingdan-i8x</a>
-            </div>
-            <div class="platform-card">
-                <div class="platform-name">[InsTagram]</div>
-                <a class="platform-link" href="https://www.instagram.com/danqing2004/" target="_blank" rel="noopener noreferrer">https://www.instagram.com/danqing2004/</a>
-            </div>
-            <div class="platform-card">
-                <div class="platform-name">[TikTok]</div>
-                <a class="platform-link" href="https://www.tiktok.com/@danqing_2025" target="_blank" rel="noopener noreferrer">https://www.tiktok.com/@danqing_2025</a>
-            </div>
-            <div class="platform-card">
-                <div class="platform-name">[BiliBili]</div>
-                <a class="platform-link" href="https://space.bilibili.com/486193977?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">https://space.bilibili.com/486193977?spm_id_from=333.1007.0.0</a>
-            </div>
-        </div>
-        <!-- 注：PNG最底部无额外装饰，但是保留干净间距 -->
+
+        <h2 class="section-title">子頁面 - Subpages [All platforms]</h2>
+        <hr>
+        <p class="list-item">[YouTube] <a href="https://www.youtube.com/@qingdan-i8x">https://www.youtube.com/@qingdan-i8x</a></p>
+        <p class="list-item">[InsInstagram] <a href="https://www.instagram.com/danqing2004/">https://www.instagram.com/danqing2004/</a></p>
+        <p class="list-item">[TikTok] <a href="https://www.tiktok.com/@danqing_2025">https://www.tiktok.com/@danqing_2025</a></p>
+        <p class="list-item">[BiliBili] <a href="https://space.bilibili.com/486193977?spm_id_from=333.1007.0.0">https://space.bilibili.com/486193977?spm_id_from=333.1007.0.0</a></p>
     </div>
-
-    <!-- 为了完全保持原文本中任何一个字符未被遗漏，包括标点、空格样式等： 
-         其中“[Commonly used]”已经精确，而且包含“danqing2004@gmail.com”及QQ邮箱等 
-         舌尖诗人的文本完全取自截图OCR风格的精确复现，保留了原文“坍陷/坍陷”以及“欸乃”等字眼。
-         同时“3983316852@qq.com”后附带了常用标签，和原始资料完全一致。 
-         左上角图片路径严格按照要求: pictures/[WeChat]second_.jpg 
-         中文字体全局备选 Arial Unicode MS, 英文字体Baskerville Old Face 已作用在主标题及section等处，
-         列表及文章内中文使用Arial Unicode MS，满足所有要求。字号比例1:1仿照截图层级，无过大过小偏差。 -->
-</div>
-
-<!-- 附加样式保障所有字号精确还原PNG阅读感，无任何遗漏的链接 -->
 </body>
 </html>
